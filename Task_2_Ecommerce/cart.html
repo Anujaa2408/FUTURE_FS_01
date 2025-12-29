@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
 <div class="navbar">
   <a href="index.html">Home</a>
   <a href="cart.html">Cart(<span id="nav-cart-count">0</span>)</a>
@@ -5,3 +13,10 @@
   <a id="loginLink" href="login.html">Login</a>
 </div>
 
+<h1>Your Cart</h1>
+<div id="cart-items"></div>
+<button onclick="checkout()">Proceed to Payment</button>
+
+<script src="script.js"></script>
+</body>
+</html>
