@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MiniShop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
 <div class="navbar">
   <a href="index.html">Home</a>
   <a href="cart.html">Cart(<span id="nav-cart-count">0</span>)</a>
@@ -5,3 +13,32 @@
   <a id="loginLink" href="login.html">Login</a>
 </div>
 
+<h1>🛍️ Products</h1>
+<div class="products">
+
+  <div class="product">
+    <img src="https://m.media-amazon.com/images/I/81Ke5gQ0QIL._AC_SY450_.jpg">
+    <h3>Travel Backpack</h3>
+    <p>₹1799</p>
+    <button onclick="addToCart('Travel Backpack', 1799)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://m.media-amazon.com/images/I/71X6UIdiUIL._AC_UY1100_.jpg">
+    <h3>Casual T-Shirt</h3>
+    <p>₹499</p>
+    <button onclick="addToCart('Casual T-Shirt', 499)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://m.media-amazon.com/images/I/51UDEuWshmL._AC_UY780_.jpg">
+    <h3>Rose Gold Ring</h3>
+    <p>₹1299</p>
+    <button onclick="addToCart('Rose Gold Ring', 1299)">Add to Cart</button>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
