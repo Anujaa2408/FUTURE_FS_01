@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini E-Commerce Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Mini E-Commerce Store</h1>
+    <p>Welcome! Add items to the cart below.</p>
+    <div id="cart">
+        🛒 Cart: <span id="cart-count">0</span> items
+    </div>
+</header>
+
+<section class="products">
+    <div class="product">
+        <h3>Product 1</h3>
+        <p>₹299</p>
+        <button class="add-to-cart" data-price="299">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <h3>Product 2</h3>
+        <p>₹499</p>
+        <button class="add-to-cart" data-price="499">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <h3>Product 3</h3>
+        <p>₹199</p>
+        <button class="add-to-cart" data-price="199">Add to Cart</button>
+    </div>
+</section>
+
+<footer>
+    <p>Total Price: ₹<span id="total-price">0</span></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
 
