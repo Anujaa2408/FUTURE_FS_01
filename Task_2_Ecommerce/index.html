@@ -2,44 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mini E-Commerce Store</title>
+    <title>MiniShop - E-Commerce Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <h1>Mini E-Commerce Store</h1>
-    <p>Welcome! Add items to the cart below.</p>
-    <div id="cart">
-        🛒 Cart: <span id="cart-count">0</span> items
-    </div>
+    <h1>🛍️ MiniShop</h1>
+    <div id="cart">Cart: <span id="cart-count">0</span></div>
 </header>
 
 <section class="products">
+    
     <div class="product">
-        <h3>Product 1</h3>
-        <p>₹299</p>
-        <button class="add-to-cart" data-price="299">Add to Cart</button>
+        <img src="https://i.imgur.com/1rR5I0v.png" alt="Bag">
+        <h3>Travel Backpack</h3>
+        <p class="price">₹1799</p>
+        <button class="add-to-cart" data-price="1799">Add to Cart</button>
     </div>
 
     <div class="product">
-        <h3>Product 2</h3>
-        <p>₹499</p>
+        <img src="https://i.imgur.com/dJ2B8Ms.png" alt="T-shirt">
+        <h3>Casual T-Shirt</h3>
+        <p class="price">₹499</p>
         <button class="add-to-cart" data-price="499">Add to Cart</button>
     </div>
 
     <div class="product">
-        <h3>Product 3</h3>
-        <p>₹199</p>
-        <button class="add-to-cart" data-price="199">Add to Cart</button>
+        <img src="https://i.imgur.com/RGmNcSo.png" alt="Ring">
+        <h3>Rose Gold Ring</h3>
+        <p class="price">₹1299</p>
+        <button class="add-to-cart" data-price="1299">Add to Cart</button>
     </div>
+
 </section>
 
 <footer>
-    <p>Total Price: ₹<span id="total-price">0</span></p>
+    <p>Total: ₹<span id="total-price">0</span></p>
 </footer>
 
 <script src="script.js"></script>
 </body>
 </html>
-
