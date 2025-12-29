@@ -1,46 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>MiniShop - E-Commerce Store</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<div class="navbar">
+  <a href="index.html">Home</a>
+  <a href="cart.html">Cart(<span id="nav-cart-count">0</span>)</a>
+  <a href="orders.html">Orders</a>
+  <a id="loginLink" href="login.html">Login</a>
+</div>
 
-<header>
-    <h1>🛍️ MiniShop</h1>
-    <div id="cart">Cart: <span id="cart-count">0</span></div>
-</header>
-
-<section class="products">
-    
-    <div class="product">
-        <img src="https://i.imgur.com/1rR5I0v.png" alt="Bag">
-        <h3>Travel Backpack</h3>
-        <p class="price">₹1799</p>
-        <button class="add-to-cart" data-price="1799">Add to Cart</button>
-    </div>
-
-    <div class="product">
-        <img src="https://i.imgur.com/dJ2B8Ms.png" alt="T-shirt">
-        <h3>Casual T-Shirt</h3>
-        <p class="price">₹499</p>
-        <button class="add-to-cart" data-price="499">Add to Cart</button>
-    </div>
-
-    <div class="product">
-        <img src="https://i.imgur.com/RGmNcSo.png" alt="Ring">
-        <h3>Rose Gold Ring</h3>
-        <p class="price">₹1299</p>
-        <button class="add-to-cart" data-price="1299">Add to Cart</button>
-    </div>
-
-</section>
-
-<footer>
-    <p>Total: ₹<span id="total-price">0</span></p>
-</footer>
-
-<script src="script.js"></script>
-</body>
-</html>
