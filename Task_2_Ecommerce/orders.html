@@ -1,7 +1,104 @@
-<div class="navbar">
-  <a href="index.html">Home</a>
-  <a href="cart.html">Cart(<span id="nav-cart-count">0</span>)</a>
-  <a href="orders.html">Orders</a>
-  <a id="loginLink" href="login.html">Login</a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders - Artisan Store</title>
+  <meta name="description" content="Your order history - Artisan Store">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      📦 Artisan
+    </a>
+    <ul class="navbar-nav">
+      <li><a href="login.html" id="nav-login">Login</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+      <li><a href="orders.html" class="active">Orders</a></li>
+    </ul>
+  </nav>
 
+  <!-- Main Content -->
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">Order History</h1>
+      <p class="page-subtitle">Track your previous orders</p>
+    </div>
+
+    <div id="orders-list">
+      <!-- Orders will be inserted here -->
+    </div>
+
+    <div id="empty-orders" class="empty-state" style="display: none;">
+      <h2>No orders yet</h2>
+      <p>Place your first order today!</p>
+      <a href="index.html" class="btn btn-primary" style="margin-top: 1rem;">Browse Products</a>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Check auth
+    if (!requireAuth()) {
+      // Will redirect to login
+    } else {
+      // Update login link
+      const loginLink = document.getElementById('nav-login');
+      const email = getUserEmail();
+      if (email) {
+        loginLink.textContent = email.split('@')[0];
+        loginLink.href = '#';
+        loginLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (confirm('Do you want to logout?')) {
+            clearUserEmail();
+            window.location.href = 'login.html';
+          }
+        });
+      }
+
+      renderOrders();
+    }
+
+    function renderOrders() {
+      const orders = getOrders();
+      const ordersListEl = document.getElementById('orders-list');
+      const emptyOrdersEl = document.getElementById('empty-orders');
+
+      if (orders.length === 0) {
+        ordersListEl.innerHTML = '';
+        emptyOrdersEl.style.display = 'block';
+        return;
+      }
+
+      emptyOrdersEl.style.display = 'none';
+
+      ordersListEl.innerHTML = orders.map(order => `
+        <div class="order-card">
+          <div class="order-header">
+            <span class="order-id">Order #${order.id.slice(-6)}</span>
+            <span class="order-date">${order.date}</span>
+          </div>
+          <div class="order-items">
+            ${order.items.map(item => `
+              <div class="cart-item">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                <div class="cart-item-info">
+                  <div class="cart-item-name">${item.name}</div>
+                  <div class="cart-item-price">${formatPrice(item.price)} × ${item.quantity}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="order-total">
+            Total: ${formatPrice(order.total)}
+          </div>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>
