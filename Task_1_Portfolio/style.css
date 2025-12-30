@@ -2,31 +2,43 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background: #f7f8fc;
 }
 
-header {
-    background-color: #333;
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: #222;
     color: white;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.section {
+    padding: 60px 20px;
     text-align: center;
-    padding: 20px;
 }
 
-section {
-    padding: 20px;
-    margin: 10px;
-    background-color: white;
-    border-radius: 5px;
+.skill-list {
+    list-style: none;
+    padding: 0;
 }
 
-h2 {
-    color: #333;
-}
-
-footer {
-    text-align: center;
+.skill-list li {
+    background: #eee;
+    margin: 8px auto;
     padding: 10px;
-    background-color: #333;
-    color: white;
+    width: 120px;
+    border-radius: 8px;
 }
-
