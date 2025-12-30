@@ -1,22 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Cart</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - Artisan Store</title>
+  <meta name="description" content="Your shopping cart - Artisan Store">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      📦 Artisan
+    </a>
+    <ul class="navbar-nav">
+      <li><a href="login.html" id="nav-login">Login</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cart.html" class="active">Cart (<span id="cart-count">0</span>)</a></li>
+      <li><a href="orders.html">Orders</a></li>
+    </ul>
+  </nav>
 
-<div class="navbar">
-  <a href="index.html">Home</a>
-  <a href="cart.html">Cart(<span id="nav-cart-count">0</span>)</a>
-  <a href="orders.html">Orders</a>
-  <a id="loginLink" href="login.html">Login</a>
-</div>
+  <!-- Main Content -->
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">Your Cart</h1>
+      <p class="page-subtitle">Review your items before checkout</p>
+    </div>
 
-<h1>Your Cart</h1>
-<div id="cart-items"></div>
-<button onclick="checkout()">Proceed to Payment</button>
+    <div id="cart-items">
+      <!-- Cart items will be inserted here -->
+    </div>
 
-<script src="script.js"></script>
+    <div id="cart-summary" class="cart-summary" style="display: none;">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cart-total-amount">₹0</span>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="handlePlaceOrder()">
+        Place Order
+      </button>
+    </div>
+
+    <div id="empty-cart" class="empty-state" style="display: none;">
+      <h2>Your cart is empty</h2>
+      <p>Add some items to get started</p>
+      <a href="index.html" class="btn btn-primary" style="margin-top: 1rem;">Browse Products</a>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Check auth
+    if (!requireAuth()) {
+      // Will redirect to login
+    } else {
+      // Update login link
+      const loginLink = document.getElementById('nav-login');
+      const email = getUserEmail();
+      if (email) {
+        loginLink.textContent = email.split('@')[0];
+        loginLink.href = '#';
+        loginLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (confirm('Do you want to logout?')) {
+            clearUserEmail();
+            window.location.href = 'login.html';
+          }
+        });
+      }
+
+      renderCart();
+    }
+
+    function renderCart() {
+      const cart = getCart();
+      const cartItemsEl = document.getElementById('cart-items');
+      const cartSummaryEl = document.getElementById('cart-summary');
+      const emptyCartEl = document.getElementById('empty-cart');
+
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = '';
+        cartSummaryEl.style.display = 'none';
+        emptyCartEl.style.display = 'block';
+        return;
+      }
+
+      emptyCartEl.style.display = 'none';
+      cartSummaryEl.style.display = 'block';
+
+      cartItemsEl.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">${formatPrice(item.price)}</div>
+          </div>
+          <div class="quantity-controls">
+            <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">−</button>
+            <span>${item.quantity}</span>
+            <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+          </div>
+          <button class="remove-btn" onclick="removeItem(${item.id})">🗑️</button>
+        </div>
+      `).join('');
+
+      document.getElementById('cart-total-amount').textContent = formatPrice(getCartTotal());
+    }
+
+    function updateQuantity(productId, quantity) {
+      updateCartQuantity(productId, quantity);
+      renderCart();
+    }
+
+    function removeItem(productId) {
+      removeFromCart(productId);
+      renderCart();
+    }
+
+    function handlePlaceOrder() {
+      const order = placeOrder();
+      if (order) {
+        showToast('Order placed successfully!');
+        setTimeout(() => {
+          window.location.href = 'orders.html';
+        }, 1000);
+      }
+    }
+  </script>
 </body>
 </html>
