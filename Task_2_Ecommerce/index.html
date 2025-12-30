@@ -1,44 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>MiniShop</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artisan Store - Handcrafted Treasures from India</title>
+  <meta name="description" content="Discover handcrafted treasures from India - Artisan Store">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      📦 Artisan
+    </a>
+    <ul class="navbar-nav">
+      <li><a href="login.html" id="nav-login">Login</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+      <li><a href="orders.html">Orders</a></li>
+    </ul>
+  </nav>
 
-<div class="navbar">
-  <a href="index.html">Home</a>
-  <a href="cart.html">Cart(<span id="nav-cart-count">0</span>)</a>
-  <a href="orders.html">Orders</a>
-  <a id="loginLink" href="login.html">Login</a>
-</div>
+  <!-- Main Content -->
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">Our Collection</h1>
+      <p class="page-subtitle">Handpicked artisan products crafted with love</p>
+    </div>
 
-<h1>🛍️ Products</h1>
-<div class="products">
-
-  <div class="product">
-    <img src="https://m.media-amazon.com/images/I/81Ke5gQ0QIL._AC_SY450_.jpg">
-    <h3>Travel Backpack</h3>
-    <p>₹1799</p>
-    <button onclick="addToCart('Travel Backpack', 1799)">Add to Cart</button>
+    <div class="product-grid" id="product-grid">
+      <!-- Products will be inserted here -->
+    </div>
   </div>
 
-  <div class="product">
-    <img src="https://m.media-amazon.com/images/I/71X6UIdiUIL._AC_UY1100_.jpg">
-    <h3>Casual T-Shirt</h3>
-    <p>₹499</p>
-    <button onclick="addToCart('Casual T-Shirt', 499)">Add to Cart</button>
-  </div>
+  <script src="app.js"></script>
+  <script>
+    // Check auth
+    if (!requireAuth()) {
+      // Will redirect to login
+    } else {
+      // Update login link to show user email
+      const loginLink = document.getElementById('nav-login');
+      const email = getUserEmail();
+      if (email) {
+        loginLink.textContent = email.split('@')[0];
+        loginLink.href = '#';
+        loginLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (confirm('Do you want to logout?')) {
+            clearUserEmail();
+            window.location.href = 'login.html';
+          }
+        });
+      }
 
-  <div class="product">
-    <img src="https://m.media-amazon.com/images/I/51UDEuWshmL._AC_UY780_.jpg">
-    <h3>Rose Gold Ring</h3>
-    <p>₹1299</p>
-    <button onclick="addToCart('Rose Gold Ring', 1299)">Add to Cart</button>
-  </div>
-
-</div>
-
-<script src="script.js"></script>
+      // Render products
+      const productGrid = document.getElementById('product-grid');
+      
+      products.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" class="product-image">
+          <div class="product-info">
+            <span class="product-category">${product.category}</span>
+            <h3 class="product-name">${product.name}</h3>
+            <p class="product-price">${formatPrice(product.price)}</p>
+            <button class="btn btn-primary btn-full" onclick="addToCart(products.find(p => p.id === ${product.id}))">
+              Add to Cart
+            </button>
+          </div>
+        `;
+        productGrid.appendChild(card);
+      });
+    }
+  </script>
 </body>
 </html>
