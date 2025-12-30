@@ -5,11 +5,11 @@ body {
   color: #222;
 }
 
-/* NAVBAR */
+/********* NAVBAR *********/
 nav {
-  background: #111;
+  background: #000;
   color: white;
-  padding: 18px 40px;
+  padding: 20px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,47 +23,61 @@ nav ul li a {
   text-decoration: none;
   color: white;
   font-weight: 500;
+  font-size: 18px;
 }
 nav ul li a:hover {
-  color: #c0c0c0;
+  color: #c5c5c5;
 }
 
-/* SECTIONS */
+/********* HEADINGS + FONT SIZES *********/
+h1 { font-size: 48px; font-weight: 600; margin-top: 10px; }
+h2 { font-size: 34px; font-weight: 600; }
+h3 { font-size: 22px; font-weight: 500; }
+p  { font-size: 18px; line-height: 26px; }
+
+/********* MAIN SECTIONS *********/
 .section {
-  padding: 60px;
+  padding: 70px 40px;
   text-align: center;
 }
-.section h2 {
-  font-size: 28px;
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-/* HOME */
 .home {
   background: white;
-  padding: 80px 20px;
+  padding: 90px 20px;
 }
-.home h1 span {
-  color: #1a73e8;
+.home h1 span { color: #d63384; }
+
+/********* PROFILE CIRCLE WITH SYMBOL *********/
+.profile-pic {
+  width: 180px;
+  height: 180px;
+  background: linear-gradient(135deg, #f9a8d4, #fbcfe8);
+  border-radius: 50%;
+  margin: 20px auto;
+  border: 6px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.symbol {
+  font-size: 80px;
+  color: #b4005a;
+  font-weight: bold;
 }
 
-/* PROJECT CARDS */
+/********* PROJECT CARDS *********/
 .project-card {
   background: white;
-  padding: 20px;
-  margin: 15px auto;
-  max-width: 650px;
-  border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  padding: 25px;
+  margin: 20px auto;
+  max-width: 700px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 .project-card a {
   display: inline-block;
-  margin-top: 10px;
-  color: #1a73e8;
+  margin-top: 8px;
+  color: #d63384;
   font-weight: 600;
   text-decoration: none;
 }
-.project-card a:hover {
-  color: black;
-}
+.project-card a:hover { color: black; }
