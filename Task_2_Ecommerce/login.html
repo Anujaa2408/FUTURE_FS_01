@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Login</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Artisan Store</title>
+  <meta name="description" content="Login to Artisan Store - Discover handcrafted treasures from India">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-icon">📦</div>
+      <h1 class="login-title">Welcome to Artisan</h1>
+      <p class="login-subtitle">Discover handcrafted treasures from India</p>
+      
+      <form id="login-form">
+        <div class="input-group">
+          <span class="input-icon">✉️</span>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">
+          Continue →
+        </button>
+      </form>
+      
+      <p style="margin-top: 1.5rem; font-size: 0.875rem; color: var(--muted);">
+        By continuing, you agree to our Terms of Service
+      </p>
+    </div>
+  </div>
 
-<div class="navbar">
-  <a href="index.html">Home</a>
-  <a href="cart.html">Cart(<span id="nav-cart-count">0</span>)</a>
-  <a href="orders.html">Orders</a>
-  <a id="loginLink" href="login.html">Login</a>
-</div>
+  <script src="app.js"></script>
+  <script>
+    // Redirect if already logged in
+    if (isLoggedIn()) {
+      window.location.href = 'index.html';
+    }
 
-<h2>Login to Continue</h2>
-<input type="email" id="email" placeholder="Enter email" />
-<button onclick="login()">Login</button>
-
-<script src="script.js"></script>
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      
+      if (email) {
+        setUserEmail(email);
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
 </body>
 </html>
