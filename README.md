@@ -18,3 +18,8 @@ https://joy-checkout-site.lovable.app
 https://github.com/anujaa2408/FUTURE_FS_01/tree/main/Task_2_Ecommerce
 
 ---
+
+Task 3 – GlowUp – AI Rebranded Beauty Store
+🔗 Live Website: https://glow-up-beauty-simple.lovable.app
+
+📁 GitHub Folder: https://github.com/anujaa2408/FUTURE_FS_01/tree/main/Task_3_Rebrand_Store
